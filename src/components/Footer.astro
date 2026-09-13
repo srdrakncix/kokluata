@@ -1,0 +1,145 @@
+---
+import { SITE, NAV, PROGRAMS, whatsapp } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="ftr">
+  <div class="container">
+    <div class="ftr__cta" data-reveal>
+      <h2 class="h-1">İlk ders<br /><span class="text-red">senden.</span></h2>
+      <p class="lead">Gel, izle, dene. Bornova'da 250 m² ringli salonumuzda seni bekliyoruz.</p>
+      <div class="ftr__btns">
+        <a href={whatsapp()} class="btn btn--wa" target="_blank" rel="noopener">WhatsApp'tan yaz</a>
+        <a href={`tel:${SITE.phone}`} class="btn btn--ghost">{SITE.phoneDisplay}</a>
+      </div>
+    </div>
+
+    <div class="ftr__grid">
+      <div class="ftr__brand">
+        <img src="/img/logo-mark.svg" alt="" width="56" height="56" />
+        <p class="ftr__name">Köklü Ata<br /><em>Kickboks</em></p>
+        <p class="ftr__muted">{SITE.legalName} · {SITE.founded}'den beri</p>
+      </div>
+      <div>
+        <p class="ftr__h">Dersler</p>
+        <ul class="ftr__list">
+          {PROGRAMS.map((p) => <li><a href={`/${p.slug}/`}>{p.title}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="ftr__h">Kulüp</p>
+        <ul class="ftr__list">
+          {NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        </ul>
+      </div>
+      <address class="ftr__addr">
+        <p class="ftr__h">Adres</p>
+        <a href={SITE.maps} target="_blank" rel="noopener">
+          {SITE.address.street}<br />{SITE.address.district} / {SITE.address.city}
+        </a>
+        <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        <a href={SITE.instagram} target="_blank" rel="noopener">Instagram @kokluataspor</a>
+      </address>
+    </div>
+
+    <div class="ftr__bottom">
+      <span>© {year} {SITE.legalName}</span>
+      <span>Bornova · İzmir</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(72px, 10vw, 140px) 32px;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 0%, rgba(216, 16, 46, 0.14), transparent 60%),
+      var(--bg);
+  }
+  .ftr__cta {
+    display: grid;
+    gap: 24px;
+    padding-bottom: clamp(56px, 8vw, 110px);
+    border-bottom: 1px solid var(--line);
+  }
+  .ftr__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .ftr__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+    gap: 40px;
+    padding-block: 56px;
+  }
+  .ftr__name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  .ftr__name em {
+    font-style: normal;
+    color: var(--red-2);
+  }
+  .ftr__muted {
+    color: var(--fg-3);
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+  .ftr__h {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 18px;
+  }
+  .ftr__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .ftr__list a,
+  .ftr__addr a {
+    color: var(--fg-2);
+    transition: color 0.25s;
+  }
+  .ftr__list a:hover,
+  .ftr__addr a:hover {
+    color: var(--white);
+  }
+  .ftr__addr {
+    font-style: normal;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+  .ftr__bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--fg-3);
+    font-size: 0.8rem;
+  }
+  @media (max-width: 900px) {
+    .ftr__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 520px) {
+    .ftr__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

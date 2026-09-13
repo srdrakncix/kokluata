@@ -1,0 +1,63 @@
+---
+import ServicePage from '../components/ServicePage.astro';
+const faq = [
+  { q: 'Kaç yaşından itibaren?', a: '12 yaş ve üzeri genç grubuna katılabilir. 12 yaş altı için kulübümüzün karate ve cimnastik branşları var; bize yazın, yönlendirelim.' },
+  { q: 'Tehlikeli mi? Çocuğum yaralanır mı?', a: "Genç grubunda kafa temaslı sparring yoktur. Kask, dişlik, kaval koruyucu zorunlu; temas kontrollü ve antrenör gözetiminde. 2017'den beri ciddi sakatlık yaşamadık." },
+  { q: 'Okul derslerine etkisi?', a: 'Velilerden en çok duyduğumuz şey: odaklanma ve disiplin artıyor. Haftada 2 gün, 60 dk; ödev saatini bozmaz.' },
+  { q: 'Veli izleyebilir mi?', a: 'Evet. İlk derslerde kenardan izleyebilirsiniz; sonrasında bekleme alanımız olmadığı için ders bitiminde alma sistemi uygun oluyor.' },
+  { q: 'Lisans ve müsabaka?', a: 'İsteyen gençlere federasyon lisansı çıkarıyoruz; il ve bölge şampiyonalarına takım olarak gidiyoruz. Zorunlu değil.' },
+];
+---
+
+<ServicePage
+  slug="genc-kickboks"
+  seoTitle="Genç ve Çocuk Kickboks İzmir – 12-17 Yaş"
+  description="Bornova İzmir'de 12-17 yaş gençler için kickboks. Disiplin, özgüven, savunma ve lisanslı sporculuk. Pazartesi-Çarşamba 20:00. Kasklı, kontrollü, güvenli. Veli için tüm cevaplar."
+  eyebrow="12-17 yaş"
+  title="Genç"
+  titleAccent="kickboks"
+  lead="Telefonun karşısında geçen enerjiyi ringe taşıyoruz. Disiplin, özgüven, savunma — ve isterse kürsü. Veliler için: kasklı, kontrollü, güvenli."
+  img="/img/gururlarimiz-15.webp"
+  imgAlt="Genç sporcular antrenörleriyle salon selfie'sinde"
+  serviceName="Genç Kickboks Dersleri"
+  audience="12-17 yaş gençler ve velileri"
+  forWho={['Enerjisini doğru yere harcaması gereken gençler', 'Özgüven ve duruş kazanması istenen çocuklar', 'Akran zorbalığına karşı savunma öğrenmek isteyenler', 'Müsabaka ve lisans hedefi olan genç sporcular']}
+  features={[
+    { title: 'Disiplin', text: 'Selam, sıra, saat. Ringde öğrenilen kurallar okula taşınır.' },
+    { title: 'Özgüven', text: 'Bir tekniği kusursuz atabilmek, karakteri değiştirir.' },
+    { title: 'Savunma', text: 'Mesafe, blok, kaçış. Kavga etmemeyi de öğretiriz.' },
+    { title: 'Kondisyon', text: 'Ekran süresinin panzehiri: 60 dakika ter.' },
+    { title: 'Takım', text: 'Aynı yaş grubu, aynı hedef. Gerçek arkadaşlıklar.' },
+    { title: 'Kürsü', text: 'İl ve bölge şampiyonalarında madalya alan gençlerimiz var.' },
+  ]}
+  steps={[
+    { title: 'Veli görüşmesi', text: "WhatsApp'tan yazın; yaş, beklenti ve varsa sağlık durumunu konuşalım." },
+    { title: 'İzleme dersi', text: 'İlk gün çocuğunuzla birlikte gelin, dersi izleyin. Karar sizin ve onun.' },
+    { title: 'İlk ay', text: 'Temel duruş ve teknik, ekipman listesi, grup arkadaşları.' },
+    { title: 'Gelişim takibi', text: 'Her ay veliye kısa geri bildirim: teknik, disiplin, kondisyon.' },
+  ]}
+  faq={faq}
+  whatsappText="Merhaba, çocuğum için genç kickboks dersleri hakkında bilgi almak istiyorum."
+>
+  <h2>Velilere açık açık</h2>
+  <p>
+    Genç grubumuzda <strong>kafa temaslı sparring yoktur</strong>. Kask, dişlik ve kaval koruyucu zorunludur; temas kontrollü
+    ve her an antrenör gözetimindedir. 2017'den beri yüzlerce genç yetiştirdik; velilerin en çok söylediği iki şey:
+    "odaklanması arttı" ve "duruşu değişti".
+  </p>
+  <p>
+    Dersler Pazartesi ve Çarşamba 20:00-21:00. Antrenör <a href="/antrenor/">Taner Yılmaz</a>, 2. kademe karate ve kickboks
+    antrenörü; gençlerle iletişimi Google yorumlarında en çok övülen özelliği.
+  </p>
+  <h2>Programda ne var?</h2>
+  <ul>
+    <li>Isınma ve oyun temelli koordinasyon (10 dk)</li>
+    <li>Teknik: duruş, yumruk, tekme, kombinasyon (25 dk)</li>
+    <li>Pad ve torba çalışması (15 dk)</li>
+    <li>Kondisyon ve esneme (10 dk)</li>
+  </ul>
+  <p>
+    İsteyen gençlere Türkiye Kickboks Federasyonu lisansı çıkarıyor, il ve bölge müsabakalarına takım olarak katılıyoruz.
+    <a href="/basarilarimiz/">Gururlarımız</a> sayfasındaki kürsülerin çoğu bu gruptan.
+  </p>
+</ServicePage>

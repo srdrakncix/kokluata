@@ -1,0 +1,59 @@
+---
+import ServicePage from '../components/ServicePage.astro';
+const faq = [
+  { q: 'Kadınlara özel saat var mı?', a: "Talebe göre kadınlara özel küçük grup saati açıyoruz; ayrıca karma yetişkin grubuna da katılabilirsiniz. WhatsApp'tan sorun, güncel saati iletelim." },
+  { q: 'Hiç spor yapmadım, zor olur mu?', a: 'Hayır. İlk 4 hafta sadece temel; tempo seviyenize göre. Üyelerimizin çoğu sıfırdan başladı.' },
+  { q: 'Kaslı olur muyum?', a: 'Kickboks kas kütlesi değil, tonus ve dayanıklılık geliştirir. Seansta 800+ kalori; sıkılaşma evet, hacim hayır.' },
+  { q: 'Savunma öğrenir miyim?', a: 'Evet. Mesafe, blok, kaçış ve karşı atak; gerçek durumlarda işe yarayan refleksler.' },
+];
+---
+
+<ServicePage
+  slug="kadin-kickboks"
+  seoTitle="Kadın Kickboks İzmir – Savunma ve Form"
+  description="Bornova İzmir'de kadınlar için kickboks: savunma, form, stres. Kadınlara özel küçük grup veya karma yetişkin grubu. Sıfırdan başlayanlar için uygun. Deneme dersi için yaz."
+  eyebrow="Kadınlar"
+  title="Kadın"
+  titleAccent="kickboks"
+  lead="Savunma, form ve gün sonunda torbaya vurmanın iyiliği. Kadınlara özel küçük grup ya da karma yetişkin grubu — seçim senin."
+  img="/img/gururlarimiz-3.webp"
+  imgAlt="Madalyalı kadın ve genç sporcular salonda"
+  serviceName="Kadın Kickboks Dersleri"
+  audience="Kadınlar"
+  forWho={['Savunma öğrenmek isteyen kadınlar', 'Spor salonundan sıkılanlar', 'Kilo ve sıkılaşma hedefi olanlar', 'Stres atmak için gerçek bir yol arayanlar']}
+  features={[
+    { title: 'Savunma', text: 'Mesafe, blok, kaçış, karşı atak. Özgüvenle yürümek.' },
+    { title: 'Form', text: 'Seansta 800+ kalori; bacak, kalça, kol, karın aynı anda.' },
+    { title: 'Stres', text: 'Torbaya 3 dakika vur, günün geri kalanı hafifler.' },
+    { title: 'Kondisyon', text: 'Nefes, dayanıklılık, tempo.' },
+    { title: 'Küçük grup', text: 'Kadınlara özel saatlerde 4-8 kişi.' },
+    { title: 'Kürsü', text: 'Kadın sporcularımız il ve bölge şampiyonalarında madalya aldı.' },
+  ]}
+  steps={[
+    { title: 'Yaz', text: "Kadınlara özel saat mi, karma grup mu; hedefin ne? WhatsApp'tan konuşalım." },
+    { title: 'Deneme dersi', text: 'Tayt ve tişört yeter, eldiven salondan.' },
+    { title: 'İlk ay', text: 'Duruş, yumruk, tekme; savunma temelleri.' },
+    { title: 'Üçüncü ay', text: 'Pad ve kombinasyon; istersen kontrollü sparring, istersen sadece kondisyon.' },
+  ]}
+  faq={faq}
+  whatsappText="Merhaba, kadın kickboks dersleri hakkında bilgi almak istiyorum."
+>
+  <h2>Kadınlar için kickboks: neden burası?</h2>
+  <p>
+    Salonumuzda kadın sporcular ilk günden beri var; <a href="/basarilarimiz/">kürsülerimizin</a> önemli kısmı onların.
+    <strong>Kadınlara özel küçük grup saatleri</strong> ve karma yetişkin grubu seçenekleri var; hangisinde rahat edersen.
+  </p>
+  <p>
+    Ders 60 dakika: ısınma, teknik, pad, kondisyon, esneme. Temas kontrollü ve isteğe bağlı; savunma öğrenmek için
+    dövüşmen gerekmez. Antrenör <a href="/antrenor/">Taner Yılmaz</a>.
+  </p>
+  <h2>Neler değişir?</h2>
+  <ul>
+    <li>4 hafta: duruş ve nefes; merdiven çıkarken fark edersin</li>
+    <li>8 hafta: kombinasyonlar akar, kol ve karın sıkılaşır</li>
+    <li>12 hafta: pad çalışmasında antrenörün geri adım atar</li>
+  </ul>
+  <p>
+    Bornova Yeşilova'da, ücretsiz otoparklı, ringli 250 m² salon. Saatler için <a href="/iletisim/">yaz</a>.
+  </p>
+</ServicePage>

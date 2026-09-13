@@ -1,0 +1,142 @@
+---
+import { SCHEDULE, whatsapp } from '../data/site';
+const todayIdx = (new Date().getDay() + 6) % 7; // Monday = 0
+---
+
+<section class="section sched" id="program">
+  <div class="container sched__in">
+    <div class="sched__head" data-reveal>
+      <p class="eyebrow">Haftalık program</p>
+      <h2 class="h-2">Ring ne zaman<br />senin?</h2>
+      <p class="lead">Genç grubu 12-17 yaş, yetişkin grubu 18+. Özel ders ve functional training saatleri sana göre ayarlanır.</p>
+      <a href={whatsapp('Merhaba, ders programı hakkında bilgi almak istiyorum.')} class="btn btn--wa" target="_blank" rel="noopener">Uygun grubu sor</a>
+    </div>
+
+    <ol class="sched__list" data-reveal-stagger>
+      {SCHEDULE.map((d, i) => (
+        <li class:list={['sday', { 'is-today': i === todayIdx, 'is-off': d.slots.length === 0 }]}>
+          <span class="sday__day">{d.day}</span>
+          <span class="sday__slots">
+            {d.slots.length === 0 && <span class="sday__off">Özel ders / dinlenme</span>}
+            {d.slots.map((s) => (
+              <span class="sday__slot">
+                <strong>{s.time}</strong>
+                <span>{s.group}</span>
+              </span>
+            ))}
+          </span>
+          {i === todayIdx && <span class="sday__badge">Bugün</span>}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .sched {
+    border-top: 1px solid var(--line);
+  }
+  .sched__in {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .sched__head {
+    display: grid;
+    gap: 20px;
+    position: sticky;
+    top: 110px;
+    justify-items: start;
+  }
+  .sched__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .sday {
+    position: relative;
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 16px;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.3s;
+  }
+  .sday:hover {
+    background: var(--bg-2);
+  }
+  .sday.is-today {
+    background: linear-gradient(90deg, rgba(216, 16, 46, 0.16), transparent 70%);
+  }
+  .sday.is-today::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--red);
+  }
+  .sday__day {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .is-off .sday__day {
+    color: var(--fg-3);
+  }
+  .sday__slots {
+    display: grid;
+    gap: 8px;
+  }
+  .sday__slot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    align-items: baseline;
+  }
+  .sday__slot strong {
+    font-variant-numeric: tabular-nums;
+    color: var(--fg);
+  }
+  .sday__slot span {
+    color: var(--fg-2);
+    font-size: 0.95rem;
+  }
+  .sday__off {
+    color: var(--fg-3);
+    font-size: 0.9rem;
+  }
+  .sday__badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--red);
+    padding: 5px 10px;
+    border-radius: 2px;
+  }
+  @media (max-width: 900px) {
+    .sched__in {
+      grid-template-columns: 1fr;
+    }
+    .sched__head {
+      position: static;
+    }
+    .sday {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 18px 14px;
+    }
+    .sday__badge {
+      position: absolute;
+      right: 14px;
+      top: 18px;
+    }
+  }
+</style>

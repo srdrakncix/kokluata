@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Sayfa bulunamadı" description="Aradığınız sayfa yok. Ana sayfaya dönün ya da derslere göz atın.">
+  <section class="nf">
+    <div class="container nf__in">
+      <p class="eyebrow">404</p>
+      <h1 class="h-display">Bu yumruk<br /><span class="text-outline">boşa gitti.</span></h1>
+      <p class="lead">Aradığın sayfa taşınmış ya da hiç olmamış olabilir.</p>
+      <div class="nf__btns">
+        <a href="/" class="btn">Ana sayfa</a>
+        <a href="/kickboks-dersleri-bornova/" class="btn btn--ghost">Dersler</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 80svh;
+    display: grid;
+    align-items: center;
+    padding-block: 160px 80px;
+  }
+  .nf__in {
+    display: grid;
+    gap: 24px;
+    justify-items: start;
+  }
+  .nf__btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+</style>

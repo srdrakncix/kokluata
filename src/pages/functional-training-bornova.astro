@@ -1,0 +1,62 @@
+---
+import ServicePage from '../components/ServicePage.astro';
+const faq = [
+  { q: 'Functional training nedir?', a: 'Günlük hayattaki hareketleri (itme, çekme, çömelme, taşıma, dönme) ağırlık, kettlebell, ip ve vücut ağırlığıyla çalıştıran antrenman sistemi. Makine yok, hareket var.' },
+  { q: 'Kickboks yapmadan sadece functional alabilir miyim?', a: 'Evet. Functional seansları bağımsızdır; kickboksla birleştirmek istersen program birlikte kurulur.' },
+  { q: 'Kaç kişilik gruplar?', a: 'Küçük grup (4-8) ya da birebir. Saatler talebe göre belirlenir.' },
+  { q: 'Kilo vermek için uygun mu?', a: 'Seans başına 500-700 kalori; kickboksla birleştirince haftalık yakım ciddi artar.' },
+];
+---
+
+<ServicePage
+  slug="functional-training-bornova"
+  seoTitle="Functional Training Bornova – Fonksiyonel Antrenman"
+  description="Bornova İzmir'de functional training: kettlebell, TRX, ip ve vücut ağırlığıyla güç, denge ve dayanıklılık. Küçük grup veya birebir. Kickboksla birleştirilebilir."
+  eyebrow="Kondisyon"
+  title="Functional"
+  titleAccent="training"
+  lead="Makine yok, hareket var. Kettlebell, ip, TRX ve kendi ağırlığınla güç, denge, çeviklik. Ringde de hayatta da işe yarar."
+  img="/img/salonumuz-7.webp"
+  imgAlt="Salonun functional training alanı, barfiks ve ağırlık istasyonu"
+  serviceName="Functional Training"
+  forWho={['Fitness salonundan sıkılanlar', 'Kickboks kondisyonunu artırmak isteyen sporcular', 'Sırt ve duruş problemi olanlar', 'Kilo ve form hedefi olan herkes']}
+  features={[
+    { title: 'Güç', text: 'Bileşik hareketler: squat, deadlift, press. Tüm vücut tek seansta.' },
+    { title: 'Denge & core', text: 'Stabilite, karın-bel gücü, düzgün duruş.' },
+    { title: 'Çeviklik', text: 'Ladder, koni, ip. Ringde ayakların hızlanır.' },
+    { title: 'Dayanıklılık', text: 'HIIT bloklarıyla nabız yönetimi ve yakım.' },
+    { title: 'Mobilite', text: 'Kalça ve omuz açıklığı; tekme yüksekliği artar.' },
+    { title: 'Sakatlık önleme', text: 'Doğru form, dengeli kas gelişimi.' },
+  ]}
+  steps={[
+    { title: 'Hareket taraması', text: 'İlk seansta 6 temel hareketi test ederiz; zayıf halkalar program olur.' },
+    { title: 'Temel 4 hafta', text: 'Form ve teknik. Ağırlık değil, kalite.' },
+    { title: 'Yükleme', text: 'Ağırlık ve tempo artar, HIIT blokları eklenir.' },
+    { title: 'Kickboksla birleştir', text: 'Haftada 2 kickboks + 1 functional: en dengeli program.' },
+  ]}
+  faq={faq}
+  whatsappText="Merhaba, functional training hakkında bilgi almak istiyorum."
+  showSchedule={false}
+>
+  <h2>Ringin dışında da güçlü</h2>
+  <p>
+    Functional training (fonksiyonel antrenman), günlük hayatta kullandığın hareket kalıplarını hedefler: kaldırmak, itmek,
+    çekmek, dönmek, taşımak. Geleneksel makine antrenmanının aksine <strong>kasları tek tek değil, hareketi bütün olarak</strong>
+    çalıştırır. Sonuç: daha güçlü, daha dengeli, daha çevik bir vücut.
+  </p>
+  <p>
+    Salonumuzda functional alanı ringin hemen yanında: barfiks istasyonu, kettlebell seti, TRX, sağlık topları, ip, ladder.
+    Seanslar küçük grup ya da birebir; programı <a href="/antrenor/">Taner Yılmaz</a> kurar.
+  </p>
+  <h2>Kickboksla neden birlikte?</h2>
+  <ul>
+    <li>Kalça ve core gücü tekme hızını doğrudan artırır</li>
+    <li>Omuz dayanıklılığı gard yorgunluğunu geciktirir</li>
+    <li>HIIT blokları raunt temposuna alıştırır</li>
+    <li>Mobilite çalışması sakatlık riskini düşürür</li>
+  </ul>
+  <p>
+    Sadece functional almak isteyenler için de bağımsız program var. Haftalık saatler için
+    <a href="/iletisim/">iletişime</a> geç.
+  </p>
+</ServicePage>

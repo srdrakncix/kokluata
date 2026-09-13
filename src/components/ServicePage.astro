@@ -1,0 +1,320 @@
+---
+/**
+ * Shared skeleton for the five service (ders) pages.
+ * Each page passes its own SEO copy + sections; this keeps schema, CTA, FAQ and cross-links consistent.
+ */
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import Programs from './Programs.astro';
+import Schedule from './Schedule.astro';
+import Faq from './Faq.astro';
+import { SITE, whatsapp, FAQ } from '../data/site';
+
+interface Feature {
+  title: string;
+  text: string;
+}
+interface Props {
+  slug: string;
+  seoTitle: string;
+  description: string;
+  eyebrow: string;
+  title: string;
+  titleAccent?: string;
+  lead: string;
+  img: string;
+  imgAlt: string;
+  serviceName: string;
+  audience?: string;
+  features: Feature[];
+  /** "who is it for" bullets */
+  forWho: string[];
+  /** first-session walkthrough */
+  steps: { title: string; text: string }[];
+  faq?: typeof FAQ;
+  whatsappText: string;
+  showSchedule?: boolean;
+}
+const {
+  slug, seoTitle, description, eyebrow, title, titleAccent, lead, img, imgAlt,
+  serviceName, audience, features, forWho, steps, faq, whatsappText, showSchedule = true,
+} = Astro.props;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: serviceName,
+    serviceType: 'Kickboxing training',
+    provider: { '@id': `${SITE.url}/#business` },
+    areaServed: { '@type': 'City', name: 'İzmir' },
+    audience: audience ? { '@type': 'Audience', audienceType: audience } : undefined,
+    url: `${SITE.url}/${slug}/`,
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ana sayfa', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Dersler', item: `${SITE.url}/kickboks-dersleri-bornova/` },
+      { '@type': 'ListItem', position: 3, name: title, item: `${SITE.url}/${slug}/` },
+    ],
+  },
+  ...(faq
+    ? [{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      }]
+    : []),
+];
+---
+
+<Base title={seoTitle} description={description} schema={schema} ogImage={img}>
+  <PageHero
+    eyebrow={eyebrow}
+    title={title}
+    titleAccent={titleAccent}
+    lead={lead}
+    img={img}
+    imgAlt={imgAlt}
+    crumbs={[{ href: '/kickboks-dersleri-bornova/', label: 'Dersler' }, { href: `/${slug}/`, label: title }]}
+  >
+    <Fragment slot="actions">
+      <a href={whatsapp(whatsappText)} class="btn btn--wa" target="_blank" rel="noopener">WhatsApp'tan sor</a>
+      <a href={`tel:${SITE.phone}`} class="btn btn--ghost">{SITE.phoneDisplay}</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section svc">
+    <div class="container svc__in">
+      <div class="svc__main">
+        <slot />
+      </div>
+      <aside class="svc__side" data-reveal>
+        <p class="svc__side-h">Kimler için?</p>
+        <ul class="svc__for">
+          {forWho.map((f) => <li>{f}</li>)}
+        </ul>
+        <div class="svc__card">
+          <p class="svc__side-h">Hemen başla</p>
+          <p>İlk ders ücretsiz izleme / deneme. Yazman yeterli, saati birlikte ayarlarız.</p>
+          <a href={whatsapp(whatsappText)} class="btn btn--wa" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section feats">
+    <div class="container">
+      <div class="feats__head" data-reveal>
+        <p class="eyebrow">Neler kazanırsın</p>
+        <h2 class="h-2">Sadece yumruk<br />değil.</h2>
+      </div>
+      <div class="feats__grid" data-reveal-stagger>
+        {features.map((f, i) => (
+          <article class="feat">
+            <span class="feat__n">0{i + 1}</span>
+            <h3 class="h-3">{f.title}</h3>
+            <p>{f.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section steps">
+    <div class="container steps__in">
+      <div class="steps__head" data-reveal>
+        <p class="eyebrow">İlk gün</p>
+        <h2 class="h-2">Nasıl<br />ilerler?</h2>
+      </div>
+      <ol class="steps__list" data-reveal-stagger>
+        {steps.map((s, i) => (
+          <li class="step">
+            <span class="step__n">{i + 1}</span>
+            <div>
+              <h3 class="h-3">{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {showSchedule && <Schedule />}
+  <Faq items={faq} />
+  <Programs exclude={slug} />
+</Base>
+
+<style>
+  .svc__in {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .svc__main {
+    display: grid;
+    gap: 22px;
+    color: var(--fg-2);
+    font-size: 1.05rem;
+  }
+  .svc__main :global(h2) {
+    color: var(--fg);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin-top: 12px;
+  }
+  .svc__main :global(strong) {
+    color: var(--fg);
+  }
+  .svc__main :global(ul) {
+    padding-left: 20px;
+    display: grid;
+    gap: 8px;
+  }
+  .svc__side {
+    position: sticky;
+    top: 110px;
+    display: grid;
+    gap: 28px;
+  }
+  .svc__side-h {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 14px;
+  }
+  .svc__for {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .svc__for li {
+    padding-left: 22px;
+    position: relative;
+    color: var(--fg-2);
+  }
+  .svc__for li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 10px;
+    height: 2px;
+    background: var(--red);
+  }
+  .svc__card {
+    padding: 24px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    display: grid;
+    gap: 14px;
+    justify-items: start;
+    color: var(--fg-2);
+  }
+
+  .feats {
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .feats__head {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .feats__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .feat {
+    position: relative;
+    padding: 28px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    color: var(--fg-2);
+    transition: border-color 0.3s, transform 0.5s var(--ease-out);
+  }
+  .feat:hover {
+    border-color: rgba(216, 16, 46, 0.6);
+    transform: translateY(-4px);
+  }
+  .feat h3 {
+    color: var(--fg);
+  }
+  .feat__n {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--red-2);
+  }
+
+  .steps {
+    border-top: 1px solid var(--line);
+  }
+  .steps__in {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .steps__head {
+    display: grid;
+    gap: 16px;
+    position: sticky;
+    top: 110px;
+  }
+  .steps__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    padding-block: 28px;
+    border-top: 1px solid var(--line);
+    color: var(--fg-2);
+  }
+  .step:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .step h3 {
+    color: var(--fg);
+    margin-bottom: 8px;
+  }
+  .step__n {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--fg-3);
+  }
+
+  @media (max-width: 900px) {
+    .svc__in,
+    .steps__in {
+      grid-template-columns: 1fr;
+    }
+    .svc__side,
+    .steps__head {
+      position: static;
+    }
+    .feats__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

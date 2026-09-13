@@ -1,0 +1,170 @@
+---
+import { BENEFITS } from '../data/site';
+---
+
+<section class="ben" data-ben aria-labelledby="ben-title">
+  <div class="ben__pin" data-ben-pin>
+    <div class="container ben__head">
+      <p class="eyebrow">Neden kickboks</p>
+      <h2 class="h-2" id="ben-title">Altı yumruk,<br />altı <span class="text-red">sebep.</span></h2>
+    </div>
+    <div class="ben__track" data-ben-track>
+      {BENEFITS.map((b, i) => (
+        <article class="bcard" data-ben-card>
+          <span class="bcard__num">0{i + 1}</span>
+          <img src={b.icon} alt="" width="72" height="72" loading="lazy" />
+          <h3 class="h-3">{b.title}</h3>
+          <p>{b.text}</p>
+          <div class="bcard__punch" aria-hidden="true"></div>
+        </article>
+      ))}
+      <div class="ben__end">
+        <p class="h-1">Ringe<br /><span class="text-outline">çık.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ben {
+    position: relative;
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .ben__pin {
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: clamp(32px, 5vw, 64px);
+    padding-block: 80px;
+    overflow: hidden;
+  }
+  .ben__head {
+    display: grid;
+    gap: 16px;
+  }
+  .ben__track {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    padding-inline: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    will-change: transform;
+  }
+  .bcard {
+    position: relative;
+    flex: none;
+    width: clamp(260px, 26vw, 340px);
+    min-height: 360px;
+    padding: 28px;
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--fg-2);
+    overflow: hidden;
+  }
+  .bcard h3 {
+    color: var(--fg);
+  }
+  .bcard img {
+    width: 64px;
+    height: 64px;
+    filter: invert(1) brightness(1.6);
+    margin-block: 8px;
+  }
+  .bcard__num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--bg-3);
+    position: absolute;
+    right: 20px;
+    top: 14px;
+  }
+  .bcard__punch {
+    position: absolute;
+    inset: auto -20% -30% auto;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(216, 16, 46, 0.55), transparent 70%);
+    transform: scale(0);
+    opacity: 0;
+  }
+  .bcard.is-hit .bcard__punch {
+    animation: hit 0.9s var(--ease-out) forwards;
+  }
+  @keyframes hit {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  .ben__end {
+    flex: none;
+    width: clamp(240px, 30vw, 420px);
+    display: grid;
+    place-items: center;
+    padding-inline: 24px;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .ben__pin {
+      min-height: 0;
+    }
+    .ben__track {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+    .ben__track::-webkit-scrollbar {
+      display: none;
+    }
+    .bcard {
+      scroll-snap-align: start;
+      width: 78vw;
+      min-height: 300px;
+    }
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger } from '../scripts/core';
+
+  const root = document.querySelector<HTMLElement>('[data-ben]')!;
+  const track = root.querySelector<HTMLElement>('[data-ben-track]')!;
+  const cards = [...root.querySelectorAll<HTMLElement>('[data-ben-card]')];
+
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
+    const dist = () => track.scrollWidth - innerWidth;
+    const tween = gsap.to(track, {
+      x: () => -dist(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: root,
+        start: 'top top',
+        end: () => '+=' + dist(),
+        pin: true,
+        scrub: 0.8,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+      },
+    });
+    // punch flash when a card crosses the viewport centre
+    cards.forEach((c) => {
+      ScrollTrigger.create({
+        trigger: c,
+        containerAnimation: tween,
+        start: 'left 60%',
+        once: true,
+        onEnter: () => c.classList.add('is-hit'),
+      });
+    });
+    return () => cards.forEach((c) => c.classList.remove('is-hit'));
+  });
+</script>

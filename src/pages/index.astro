@@ -1,0 +1,320 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Benefits from '../components/Benefits.astro';
+import Programs from '../components/Programs.astro';
+import Schedule from '../components/Schedule.astro';
+import Faq from '../components/Faq.astro';
+import { SITE, REVIEWS, whatsapp } from '../data/site';
+
+const gallery = [
+  'gururlarimiz-1', 'gururlarimiz-2', 'gururlarimiz-5', 'gururlarimiz-6',
+  'gururlarimiz-11', 'gururlarimiz-12', 'gururlarimiz-16', 'gururlarimiz-7',
+];
+---
+
+<Base
+  title="Bornova Kickboks Salonu"
+  fullTitle="Köklü Ata Kickboks · Bornova İzmir Kickboks Salonu | 2017'den beri"
+  description="Bornova İzmir'de 250 m² ringli kickboks salonu. Genç ve yetişkin grup dersleri, özel ders ve functional training. 2. kademe antrenör Taner Yılmaz. Google'da 4.9 puan. Deneme dersine gel."
+  bodyClass="page-home"
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href="/img/gloves-hero.webp" media="(max-width: 900px)" />
+    <link rel="preload" as="fetch" href="/models/glove.glb" crossorigin media="(min-width: 901px)" />
+  </Fragment>
+  <Hero />
+
+  <!-- STATS -->
+  <section class="stats" aria-label="Rakamlarla">
+    <div class="container stats__grid" data-reveal-stagger>
+      <div class="stat">
+        <span class="stat__n"><span data-count="2017">0</span></span>
+        <span class="stat__l">'den beri Bornova'da</span>
+      </div>
+      <div class="stat">
+        <span class="stat__n"><span data-count="250">0</span> m²</span>
+        <span class="stat__l">Ringli antrenman alanı</span>
+      </div>
+      <div class="stat">
+        <span class="stat__n"><span data-count="4.9">0</span></span>
+        <span class="stat__l">Google puanı, {SITE.rating.count}+ yorum</span>
+      </div>
+      <div class="stat">
+        <span class="stat__n"><span data-count="30" data-suffix="+">0</span></span>
+        <span class="stat__l">İl ve bölge madalyası</span>
+      </div>
+    </div>
+  </section>
+
+  <Benefits />
+  <Programs />
+
+  <!-- COACH -->
+  <section class="section coach">
+    <div class="container coach__in">
+      <div class="coach__media" data-reveal>
+        <img src="/img/taner.webp" alt="Antrenör Taner Yılmaz ringde, kırmızı eldivenlerle" width="1600" height="1068" loading="lazy" data-parallax="10" />
+        <span class="coach__stamp">2. Kademe<br />Antrenör</span>
+      </div>
+      <div class="coach__body" data-reveal>
+        <p class="eyebrow">Antrenör</p>
+        <h2 class="h-2">Taner Yılmaz</h2>
+        <p class="lead">
+          Karate ve kickboks 2. kademe antrenör. Kulübün ilk gününden beri ringde; lisanslı sporcu
+          yetiştiriyor, il ve bölge müsabakalarında kürsüye taşıyor.
+        </p>
+        <p class="coach__quote">
+          "Herkes sıfırdan başlar. Benim işim, üçüncü ayda seni ilk gününde tanıyamayacak hale getirmek."
+        </p>
+        <a href="/antrenor/" class="btn btn--ghost">Antrenörü tanı</a>
+      </div>
+    </div>
+  </section>
+
+  <Schedule />
+
+  <!-- ACHIEVEMENTS -->
+  <section class="section ach">
+    <div class="container">
+      <div class="ach__head" data-reveal>
+        <p class="eyebrow">Gururlarımız</p>
+        <h2 class="h-2">Kürsü, alışkanlık<br />haline gelir.</h2>
+        <a href="/basarilarimiz/" class="btn btn--ghost">Tüm başarılar</a>
+      </div>
+    </div>
+    <div class="ach__strip" data-ach-strip>
+      {gallery.map((g, i) => (
+        <figure class="ach__item" style={`--i:${i}`}>
+          <img src={`/img/${g}.webp`} alt="Köklü Ata sporcuları müsabaka kürsüsünde" loading="lazy" width="738" height="738" />
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section rev">
+    <div class="container">
+      <div class="rev__head" data-reveal>
+        <p class="eyebrow">Google yorumları</p>
+        <h2 class="h-2">Üyeler ne diyor?</h2>
+      </div>
+      <div class="rev__grid" data-reveal-stagger>
+        {REVIEWS.map((r) => (
+          <blockquote class="rcard">
+            <span class="rcard__stars" aria-label={`${r.stars} yıldız`}>{'★'.repeat(r.stars)}</span>
+            <p>{r.text}</p>
+            <footer>— {r.name}</footer>
+          </blockquote>
+        ))}
+      </div>
+      <a href={SITE.maps} class="rev__all" target="_blank" rel="noopener">
+        Google'da {SITE.rating.count}+ yorumun tamamını oku →
+      </a>
+    </div>
+  </section>
+
+  <Faq />
+</Base>
+
+<style>
+  /* stats */
+  .stats {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat {
+    display: grid;
+    gap: 6px;
+    padding: 36px 24px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:first-child {
+    padding-left: 0;
+  }
+  .stat:last-child {
+    border-right: 0;
+  }
+  .stat__n {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat__l {
+    color: var(--fg-3);
+    font-size: 0.85rem;
+  }
+
+  /* coach */
+  .coach__in {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: center;
+  }
+  .coach__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+  .coach__media img {
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    filter: contrast(1.05) saturate(0.9);
+  }
+  .coach__stamp {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    padding: 12px 16px;
+    background: var(--red);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transform: rotate(-3deg);
+  }
+  .coach__body {
+    display: grid;
+    gap: 22px;
+    justify-items: start;
+  }
+  .coach__quote {
+    padding-left: 20px;
+    border-left: 3px solid var(--red);
+    color: var(--fg);
+    font-size: 1.1rem;
+    font-style: italic;
+    max-width: 44ch;
+  }
+
+  /* achievements */
+  .ach {
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .ach__head {
+    display: grid;
+    gap: 16px;
+    justify-items: start;
+    margin-bottom: 48px;
+  }
+  .ach__strip {
+    display: flex;
+    gap: 16px;
+    padding-inline: var(--gutter);
+    will-change: transform;
+  }
+  .ach__item {
+    flex: none;
+    width: clamp(220px, 24vw, 340px);
+    aspect-ratio: 1;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    transform: rotate(calc((var(--i) - 3) * 0.6deg));
+  }
+  .ach__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.5);
+    transition: filter 0.5s, transform 0.8s var(--ease-out);
+  }
+  .ach__item:hover img {
+    filter: none;
+    transform: scale(1.06);
+  }
+
+  /* reviews */
+  .rev {
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .rev__head {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .rev__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .rcard {
+    margin: 0;
+    padding: 28px;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--fg-2);
+  }
+  .rcard__stars {
+    color: #f5b301;
+    letter-spacing: 2px;
+  }
+  .rcard footer {
+    color: var(--fg-3);
+    font-size: 0.85rem;
+  }
+  .rev__all {
+    display: inline-block;
+    margin-top: 32px;
+    color: var(--fg-2);
+    border-bottom: 1px solid var(--line);
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .rev__all:hover {
+    color: var(--white);
+    border-color: var(--white);
+  }
+
+  @media (max-width: 960px) {
+    .stats__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stat {
+      padding: 28px 20px;
+    }
+    .stat:nth-child(2n) {
+      border-right: 0;
+    }
+    .stat:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+    }
+    .coach__in,
+    .rev__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from '../scripts/core';
+  const strip = document.querySelector<HTMLElement>('[data-ach-strip]');
+  if (strip && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.fromTo(
+      strip,
+      { x: 0 },
+      {
+        x: () => -(strip.scrollWidth - innerWidth) * 0.6,
+        ease: 'none',
+        scrollTrigger: { trigger: strip, start: 'top bottom', end: 'bottom top', scrub: 1, invalidateOnRefresh: true },
+      },
+    );
+  }
+</script>

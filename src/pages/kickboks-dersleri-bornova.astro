@@ -1,0 +1,65 @@
+---
+import ServicePage from '../components/ServicePage.astro';
+const faq = [
+  { q: 'Grup dersleri kaç kişilik?', a: 'Ortalama 8-14 kişi. Herkesin teknik düzeltme alabileceği büyüklükte tutuyoruz; kalabalık salon değil, takım.' },
+  { q: 'Genç ve yetişkin grupları ayrı mı?', a: 'Evet. 12-17 yaş genç grubu Pazartesi ve Çarşamba 20:00, 18+ yetişkin grubu Salı ve Perşembe 19:30.' },
+  { q: 'Hiç tecrübem yok, aynı gruba mı gireceğim?', a: 'İlk haftalar temel duruş, adım ve yumruk çalışırsın; sparring seviyene göre ve isteğe bağlı. Kimse ilk gün ringe çıkmaz.' },
+  { q: 'Lisans çıkarabilir miyim?', a: "Evet. Kulübümüz Türkiye Kickboks Federasyonu'na bağlı; isteyen sporcularımıza lisans çıkarıp müsabakalara götürüyoruz." },
+  { q: 'Ücretler nasıl?', a: "Aylık paket usulü; haftada 2 veya 3 gün seçeneği var. Güncel fiyat için WhatsApp'tan yazman yeterli." },
+];
+---
+
+<ServicePage
+  slug="kickboks-dersleri-bornova"
+  seoTitle="Kickboks Dersleri Bornova – Grup Dersleri"
+  description="Bornova İzmir'de genç ve yetişkin grup kickboks dersleri. Haftada 2-4 seans, 250 m² ringli salon, lisanslı sporcu yetiştiren 2. kademe antrenör. Deneme dersi için yaz."
+  eyebrow="Grup dersleri"
+  title="Kickboks dersleri"
+  titleAccent="Bornova"
+  lead="Haftada 2-4 seans, seviyene göre grup. Teknik, kondisyon, savunma ve istersen müsabaka yolu. 12 yaşından 50'sine, aynı ring."
+  img="/img/grup-kickboks-dersleri.webp"
+  imgAlt="Köklü Ata salonunda grup kickboks dersi, kum torbaları ve sporcular"
+  serviceName="Grup Kickboks Dersleri"
+  audience="Gençler ve yetişkinler"
+  forWho={['Sıfırdan başlamak isteyen yetişkinler', '12-17 yaş gençler', 'Form ve kilo hedefi olanlar', 'Müsabakaya hazırlanmak isteyen sporcular']}
+  features={[
+    { title: 'Teknik', text: 'Duruş, adım, yumruk-tekme kombinasyonları. Her ders bir teknik, her ay bir seviye.' },
+    { title: 'Kondisyon', text: 'Isınma, torba, pad çalışması, core. Seansta 800-1000 kalori.' },
+    { title: 'Savunma', text: 'Blok, kaçış, mesafe. Gerçek hayatta işe yarayan refleksler.' },
+    { title: 'Sparring', text: 'Kontrollü, kasklı, seviyene göre. İstemeyen çıkmaz.' },
+    { title: 'Takım', text: 'Aynı saatte aynı insanlar. Motivasyonun en büyük kaynağı.' },
+    { title: 'Lisans', text: 'Federasyon lisansı, il ve bölge müsabakaları, kürsü.' },
+  ]}
+  steps={[
+    { title: 'Yaz, saati ayarlayalım', text: "WhatsApp'tan yaş ve seviyeni söyle; sana uygun grubu ve ilk ders gününü belirleriz." },
+    { title: 'Gel, izle ya da katıl', text: 'İlk gün şort ve tişört yeter. Eldiven salondan. İster kenardan izle, ister ısınmaya katıl.' },
+    { title: 'İlk ay: temel', text: 'Duruş, adım, jab-cross, ön tekme. Bandaj sarmayı öğrenirsin, ilk kombinasyonunu atarsın.' },
+    { title: 'Üçüncü ay: ring', text: 'Pad ve kontrollü sparring. Kendi ekipmanını alırsın. İstersen lisans konuşuruz.' },
+  ]}
+  faq={faq}
+  whatsappText="Merhaba, grup kickboks dersleri hakkında bilgi almak istiyorum."
+>
+  <h2>Bornova'da kickboks: ring, antrenör, takım</h2>
+  <p>
+    Köklü Ata Spor Kulübü 2017'den beri Yeşilova'da. 90 m²'de başladık; bugün <strong>250 m² alanda gerçek ring</strong>, kum
+    torbaları, pad ve functional alanıyla Bornova'nın en donanımlı kickboks salonlarından biriyiz. Dersleri 2. kademe karate
+    ve kickboks antrenörü <a href="/antrenor/">Taner Yılmaz</a> veriyor.
+  </p>
+  <p>
+    Grup dersleri iki seviyeye ayrılır: <a href="/genc-kickboks/">genç grubu</a> (12-17) ve yetişkin grubu (18+). Her ders 60
+    dakikadır: 10 dk ısınma, 30 dk teknik ve pad, 15 dk kondisyon, 5 dk esneme. Sparring haftada bir, kask ve dişlikle,
+    yalnızca isteyenlerle.
+  </p>
+  <h2>Kimler geliyor?</h2>
+  <ul>
+    <li>Ofis sonrası stres atmak isteyen yetişkinler</li>
+    <li>Okul dönüşü enerjisini doğru yere harcamak isteyen gençler (ve rahat nefes alan veliler)</li>
+    <li>Fitness'tan sıkılıp gerçek bir beceri öğrenmek isteyenler</li>
+    <li>Müsabaka hedefi olan, lisanslı sporcu olmak isteyenler</li>
+  </ul>
+  <p>
+    Bornova metro ve Yeşilova hattına yakınız; salon önünde ücretsiz otopark var. Kadınlara özel saatler için
+    <a href="/kadin-kickboks/">kadın kickboks</a> sayfasına, birebir çalışmak için <a href="/ozel-kickboks-dersi/">özel ders</a>
+    sayfasına bak.
+  </p>
+</ServicePage>

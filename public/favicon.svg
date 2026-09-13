@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="48" fill="#d8102e"/>
+  <circle cx="50" cy="50" r="41" fill="none" stroke="#f4f2ef" stroke-width="2"/>
+  <g fill="#0a0a0b">
+    <!-- torii -->
+    <path d="M22 30 Q50 22 78 30 L76 35 Q50 28 24 35 Z"/>
+    <rect x="27" y="38" width="46" height="4"/>
+    <rect x="33" y="33" width="6" height="34"/>
+    <rect x="61" y="33" width="6" height="34"/>
+    <rect x="47" y="42" width="6" height="12"/>
+    <!-- roots -->
+    <path d="M36 67 C34 72 30 74 26 77 C29 75 33 74 36 71 Z"/>
+    <path d="M38 67 C38 73 36 77 33 81 C36 78 39 74 40 68 Z"/>
+    <path d="M62 67 C64 73 66 76 71 79 C68 76 65 73 64 67 Z"/>
+    <path d="M60 67 C60 74 62 78 65 82 C63 78 62 73 62 67 Z"/>
+    <path d="M48 66 C46 72 44 76 42 80 C45 77 47 73 49 68 Z"/>
+    <path d="M52 66 C54 72 56 76 58 80 C55 77 53 73 51 68 Z"/>
+  </g>
+  <text x="50" y="21" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="9" fill="#f4f2ef" letter-spacing="1.5">KASK</text>
+  <text x="50" y="92" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="8" fill="#f4f2ef" letter-spacing="1">2017</text>
+</svg>

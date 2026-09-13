@@ -1,0 +1,264 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE, PROGRAMS, whatsapp } from '../data/site';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'İletişim',
+    url: `${SITE.url}/iletisim/`,
+    mainEntity: { '@id': `${SITE.url}/#business` },
+  },
+];
+---
+
+<Base
+  title="İletişim – Adres, Telefon, WhatsApp"
+  description="Köklü Ata Kickboks iletişim: Yeşilova Mah. 4032/5 Sk. No:7C Bornova/İzmir. Telefon 0542 760 13 88, WhatsApp, Instagram. Deneme dersi için hemen yaz."
+  schema={schema}
+>
+  <PageHero
+    eyebrow="İletişim"
+    title="Yaz,"
+    titleAccent="gel, dene."
+    lead="En hızlı yol WhatsApp. Yaşını, hedefini ve uygun günlerini yaz; aynı gün cevap alırsın."
+    crumbs={[{ href: '/iletisim/', label: 'İletişim' }]}
+  >
+    <Fragment slot="actions">
+      <a href={whatsapp()} class="btn btn--wa" target="_blank" rel="noopener">WhatsApp'tan yaz</a>
+      <a href={`tel:${SITE.phone}`} class="btn btn--ghost">{SITE.phoneDisplay}</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section contact">
+    <div class="container contact__in">
+      <form class="cform" data-cform data-reveal>
+        <p class="cform__h">Bilgi formu</p>
+        <p class="cform__sub">Doldur, "Gönder"e bas; mesajın WhatsApp'ta hazır açılır. Kayıt, üyelik, şifre yok.</p>
+
+        <label class="field">
+          <span>Adın</span>
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label class="field">
+          <span>Yaş (sporcunun)</span>
+          <input type="number" name="age" min="6" max="80" inputmode="numeric" />
+        </label>
+        <label class="field">
+          <span>İlgilendiğin ders</span>
+          <select name="interest">
+            {PROGRAMS.map((p) => <option value={p.title}>{p.title}</option>)}
+            <option value="Diğer">Diğer</option>
+          </select>
+        </label>
+        <label class="field field--full">
+          <span>Mesajın (isteğe bağlı)</span>
+          <textarea name="msg" rows="3" placeholder="Uygun günlerin, hedefin, sorun..."></textarea>
+        </label>
+        <div class="cform__actions field--full">
+          <button type="submit" class="btn btn--wa">Gönder (WhatsApp)</button>
+          <a class="cform__mail" data-cform-mail href={`mailto:${SITE.email}`}>ya da e-posta ile gönder</a>
+        </div>
+      </form>
+
+      <div class="cinfo" data-reveal-stagger>
+        <div class="cinfo__block">
+          <p class="cinfo__h">Adres</p>
+          <a href={SITE.maps} target="_blank" rel="noopener" class="cinfo__big">
+            {SITE.address.street}<br />{SITE.address.district} / {SITE.address.city}
+          </a>
+          <p class="cinfo__muted">Ücretsiz otopark · Bornova metroya yakın</p>
+        </div>
+        <div class="cinfo__block">
+          <p class="cinfo__h">Telefon & WhatsApp</p>
+          <a href={`tel:${SITE.phone}`} class="cinfo__big">{SITE.phoneDisplay}</a>
+          <p class="cinfo__muted">Ders saatlerinde (19:30-21:00) telefona bakamayabiliriz; WhatsApp'a yazın.</p>
+        </div>
+        <div class="cinfo__block">
+          <p class="cinfo__h">E-posta</p>
+          <a href={`mailto:${SITE.email}`} class="cinfo__big cinfo__big--sm">{SITE.email}</a>
+        </div>
+        <div class="cinfo__block">
+          <p class="cinfo__h">Instagram</p>
+          <a href={SITE.instagram} target="_blank" rel="noopener" class="cinfo__big cinfo__big--sm">@kokluataspor</a>
+          <p class="cinfo__muted">Antrenman videoları ve müsabaka günleri burada.</p>
+        </div>
+        <div class="cinfo__block">
+          <p class="cinfo__h">Ders saatleri</p>
+          <p class="cinfo__muted">Genç: Pzt & Çar 20:00-21:00<br />Yetişkin: Salı & Per 19:30-20:30<br />Özel ders / functional: randevuyla</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cmap">
+    <iframe
+      title="Köklü Ata Kickboks harita"
+      src={`https://www.google.com/maps?q=${encodeURIComponent(SITE.address.street + ' ' + SITE.address.district + ' ' + SITE.address.city)}&output=embed`}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+  </section>
+</Base>
+
+<style>
+  .contact {
+    border-top: 1px solid var(--line);
+  }
+  .contact__in {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .cform {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 32px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .cform__h {
+    grid-column: 1 / -1;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+  }
+  .cform__sub {
+    grid-column: 1 / -1;
+    color: var(--fg-3);
+    font-size: 0.9rem;
+    margin-top: -10px;
+  }
+  .field {
+    display: grid;
+    gap: 8px;
+  }
+  .field--full {
+    grid-column: 1 / -1;
+  }
+  .field span {
+    font-size: 0.8rem;
+    color: var(--fg-2);
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font: inherit;
+    transition: border-color 0.3s;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--red-2);
+  }
+  .field textarea {
+    resize: vertical;
+  }
+  .cform__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    margin-top: 8px;
+  }
+  .cform__mail {
+    color: var(--fg-3);
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .cform__mail:hover {
+    color: var(--fg);
+  }
+  .cinfo {
+    display: grid;
+    gap: 32px;
+  }
+  .cinfo__h {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 8px;
+  }
+  .cinfo__big {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .cinfo__big--sm {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    text-transform: none;
+    font-weight: 600;
+  }
+  .cinfo__big:hover {
+    color: var(--red-2);
+  }
+  .cinfo__muted {
+    color: var(--fg-3);
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+  .cmap {
+    height: 420px;
+    border-top: 1px solid var(--line);
+  }
+  .cmap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(1) invert(0.9) contrast(1.1);
+  }
+  @media (max-width: 900px) {
+    .contact__in,
+    .cform {
+      grid-template-columns: 1fr;
+    }
+    .cform {
+      padding: 24px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-cform]')!;
+  const mail = document.querySelector<HTMLAnchorElement>('[data-cform-mail]')!;
+  const PHONE = '905427601388';
+  const EMAIL = 'tanerryilmaz97@gmail.com';
+
+  const compose = () => {
+    const d = new FormData(form);
+    const lines = [
+      `Merhaba, ${d.get('name') || ''} ben.`,
+      d.get('age') ? `Yaş: ${d.get('age')}` : '',
+      `İlgilendiğim ders: ${d.get('interest')}`,
+      d.get('msg') ? `Not: ${d.get('msg')}` : '',
+    ].filter(Boolean);
+    return lines.join('\n');
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(compose())}`, '_blank', 'noopener');
+  });
+  mail.addEventListener('click', () => {
+    mail.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Kickboks bilgi talebi')}&body=${encodeURIComponent(compose())}`;
+  });
+</script>

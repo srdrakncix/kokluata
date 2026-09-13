@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { whatsapp } from '../data/site';
+
+const photos = [
+  'gururlarimiz-1', 'gururlarimiz-2', 'gururlarimiz-3', 'gururlarimiz-4', 'gururlarimiz-5', 'gururlarimiz-6',
+  'gururlarimiz-7', 'gururlarimiz-11', 'gururlarimiz-12', 'gururlarimiz-13', 'gururlarimiz-14', 'gururlarimiz-15',
+  'gururlarimiz-16', 'gururlarimiz-21', 'basarilarimiz-1', 'basarilarimiz-2',
+];
+---
+
+<Base
+  title="Başarılarımız – Kürsüdeki Sporcularımız"
+  description="Köklü Ata Kickboks sporcularının il ve bölge şampiyonalarındaki madalyaları. 2017'den beri lisanslı sporcu yetiştiren Bornova kulübünün gurur duvarı."
+  ogImage="/img/gururlarimiz-1.webp"
+>
+  <PageHero
+    eyebrow="Gururlarımız"
+    title="Kürsü,"
+    titleAccent="alışkanlık."
+    lead="2017'den beri il ve bölge şampiyonalarında madalya alan sporcularımız. Her fotoğrafta bir ilk gün, bir ilk yumruk, bir ilk maç var."
+    crumbs={[{ href: '/basarilarimiz/', label: 'Başarılar' }]}
+  >
+    <Fragment slot="actions">
+      <a href={whatsapp('Merhaba, müsabaka ve lisans hakkında bilgi almak istiyorum.')} class="btn btn--wa" target="_blank" rel="noopener">Sıradaki sen ol</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section wall">
+    <div class="container">
+      <div class="wall__grid" data-reveal-stagger>
+        {photos.map((p, i) => (
+          <figure class="wall__item" style={`--r:${((i * 7) % 5) - 2}deg`}>
+            <img src={`/img/${p}.webp`} alt="Köklü Ata sporcusu madalya kürsüsünde" loading="lazy" width="738" height="738" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section path">
+    <div class="container path__in">
+      <div class="path__head" data-reveal>
+        <p class="eyebrow">Lisanslı sporcu yolu</p>
+        <h2 class="h-2">İlk dersten<br />ilk maça.</h2>
+      </div>
+      <ol class="path__list" data-reveal-stagger>
+        <li><strong>0-3 ay</strong><span>Temel teknik, kondisyon, ilk pad çalışması.</span></li>
+        <li><strong>3-6 ay</strong><span>Kontrollü sparring, federasyon lisansı başvurusu.</span></li>
+        <li><strong>6-12 ay</strong><span>İlk il müsabakası; antrenör köşede.</span></li>
+        <li><strong>12+ ay</strong><span>Bölge şampiyonası, kürsü, sıradaki hedef.</span></li>
+      </ol>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wall {
+    border-top: 1px solid var(--line);
+  }
+  .wall__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .wall__item {
+    margin: 0;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--radius);
+    transform: rotate(var(--r));
+    transition: transform 0.6s var(--ease-out);
+  }
+  .wall__item:hover {
+    transform: rotate(0) scale(1.03);
+    z-index: 1;
+  }
+  .wall__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.5);
+    transition: filter 0.5s;
+  }
+  .wall__item:hover img {
+    filter: none;
+  }
+  .path {
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .path__in {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .path__head {
+    display: grid;
+    gap: 16px;
+  }
+  .path__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .path__list li {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    padding-block: 22px;
+    border-top: 1px solid var(--line);
+    color: var(--fg-2);
+  }
+  .path__list li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .path__list strong {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: var(--red-2);
+  }
+  @media (max-width: 900px) {
+    .wall__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .path__in {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

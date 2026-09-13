@@ -1,0 +1,212 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Programs from '../components/Programs.astro';
+import { SITE, whatsapp } from '../data/site';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Taner Yılmaz',
+    jobTitle: '2. Kademe Karate ve Kickboks Antrenörü',
+    worksFor: { '@id': `${SITE.url}/#business` },
+    image: `${SITE.url}/img/taner.webp`,
+    url: `${SITE.url}/antrenor/`,
+    knowsAbout: ['Kickboxing', 'Karate', 'Functional training'],
+  },
+];
+const marks = [
+  { n: '2.', l: 'Kademe karate ve kickboks antrenörü' },
+  { n: '2017', l: 'Kulübün ilk gününden beri ringde' },
+  { n: '30+', l: 'Kürsüye taşıdığı sporcu' },
+  { n: '4.9', l: 'Google puanı; yorumların çoğu onun adına' },
+];
+---
+
+<Base
+  title="Antrenör Taner Yılmaz"
+  description="Köklü Ata Kickboks antrenörü Taner Yılmaz: 2. kademe karate ve kickboks antrenörü, 2017'den beri Bornova'da lisanslı sporcu yetiştiriyor. Google yorumlarında en çok övülen özelliği öğrencileriyle bağı."
+  schema={schema}
+  ogImage="/img/taner.webp"
+>
+  <PageHero
+    eyebrow="Antrenör"
+    title="Taner"
+    titleAccent="Yılmaz"
+    lead="2. kademe karate ve kickboks antrenörü. Kulübün ilk gününden beri ringde; öğrencilerini ilk yumruktan kürsüye kadar taşıyor."
+    img="/img/taner.webp"
+    imgAlt="Taner Yılmaz ringde, kırmızı eldivenlerle"
+    crumbs={[{ href: '/antrenor/', label: 'Antrenör' }]}
+  >
+    <Fragment slot="actions">
+      <a href={whatsapp('Merhaba Taner hoca, ders hakkında bilgi almak istiyorum.')} class="btn btn--wa" target="_blank" rel="noopener">Taner hocaya yaz</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="marks">
+    <div class="container marks__grid" data-reveal-stagger>
+      {marks.map((m) => (
+        <div class="mark">
+          <span class="mark__n">{m.n}</span>
+          <span class="mark__l">{m.l}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section bio">
+    <div class="container bio__in">
+      <div class="bio__text" data-reveal>
+        <p class="eyebrow">Hikâye</p>
+        <h2 class="h-2">Önce karate,<br />sonra ring.</h2>
+        <p>
+          Taner, karateyle başladı; siyah kuşak ve antrenörlük belgesinden sonra kickboksa geçti. 2017'de Turgut Yılmaz'ın
+          kurduğu Köklü Ata Spor Kulübü'nde 90 m²'lik ilk salondan bugünkü 250 m² ringli salona kadar her adımda o vardı.
+        </p>
+        <p>
+          Bugün genç ve yetişkin gruplarını, özel dersleri ve functional training seanslarını o yürütüyor. Öğrencilerine
+          federasyon lisansı çıkarıyor, müsabakalarda köşede duruyor, kürsüden inince ilk sarılan o oluyor.
+        </p>
+        <blockquote class="bio__q">
+          "Taner hocanın çocuklarla iletişimi, ilgisi, motive edici yönü ve onlarla bağ kurabilmesi, hem de teknik anlamda
+          kendi bilgi ve yeteneğini aktarabilmesi çok kıymetli."
+          <footer>— Google yorumu, veli</footer>
+        </blockquote>
+      </div>
+      <div class="bio__side" data-reveal>
+        <div class="bio__card">
+          <p class="bio__h">Uzmanlık</p>
+          <ul>
+            <li>Kickboks (2. kademe antrenör)</li>
+            <li>Karate (2. kademe antrenör)</li>
+            <li>Functional training</li>
+            <li>Genç sporcu gelişimi</li>
+            <li>Müsabaka hazırlığı ve köşe</li>
+          </ul>
+        </div>
+        <div class="bio__card">
+          <p class="bio__h">Yaklaşım</p>
+          <ul>
+            <li>Herkes sıfırdan başlar; kimse ilk gün ringe çıkmaz</li>
+            <li>Teknik önce, güç sonra</li>
+            <li>Sparring isteğe bağlı, her zaman kasklı</li>
+            <li>Velilere aylık geri bildirim</li>
+          </ul>
+        </div>
+        <img src="/img/antrenor-taner-yilmaz-2-3.webp" alt="Taner Yılmaz portresi" width="600" height="600" loading="lazy" class="bio__img" />
+      </div>
+    </div>
+  </section>
+
+  <Programs />
+</Base>
+
+<style>
+  .marks {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .marks__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .mark {
+    display: grid;
+    gap: 6px;
+    padding: 32px 24px;
+    border-right: 1px solid var(--line);
+  }
+  .mark:first-child {
+    padding-left: 0;
+  }
+  .mark:last-child {
+    border-right: 0;
+  }
+  .mark__n {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1;
+    color: var(--red-2);
+  }
+  .mark__l {
+    color: var(--fg-3);
+    font-size: 0.85rem;
+  }
+  .bio__in {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .bio__text {
+    display: grid;
+    gap: 22px;
+    color: var(--fg-2);
+    font-size: 1.05rem;
+  }
+  .bio__text h2 {
+    color: var(--fg);
+  }
+  .bio__q {
+    margin: 12px 0 0;
+    padding-left: 20px;
+    border-left: 3px solid var(--red);
+    color: var(--fg);
+    font-style: italic;
+  }
+  .bio__q footer {
+    margin-top: 10px;
+    font-style: normal;
+    color: var(--fg-3);
+    font-size: 0.85rem;
+  }
+  .bio__side {
+    display: grid;
+    gap: 20px;
+    position: sticky;
+    top: 110px;
+  }
+  .bio__card {
+    padding: 24px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--fg-2);
+  }
+  .bio__card ul {
+    margin: 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 6px;
+  }
+  .bio__h {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 12px;
+  }
+  .bio__img {
+    border-radius: var(--radius);
+    filter: saturate(0.9);
+  }
+  @media (max-width: 900px) {
+    .marks__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .mark:nth-child(2n) {
+      border-right: 0;
+    }
+    .mark:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+    }
+    .bio__in {
+      grid-template-columns: 1fr;
+    }
+    .bio__side {
+      position: static;
+    }
+  }
+</style>

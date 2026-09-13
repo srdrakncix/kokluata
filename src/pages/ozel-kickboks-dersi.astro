@@ -1,0 +1,65 @@
+---
+import ServicePage from '../components/ServicePage.astro';
+const faq = [
+  { q: 'Özel ders kaç dakika?', a: '60 dakika. İstersen 90 dakikalık yoğun seans da planlanabilir.' },
+  { q: 'Hangi saatlerde?', a: 'Grup dersleri dışındaki tüm saatler; sabah, öğlen, hafta sonu. Programı sana göre kurarız.' },
+  { q: 'Grup dersiyle birleştirebilir miyim?', a: 'En verimli yol bu. Haftada 1 özel + 2 grup dersi, en hızlı ilerleyen üyelerimizin formülü.' },
+  { q: 'İki kişi birlikte alabilir miyiz?', a: 'Evet, arkadaş ya da aile olarak 2 kişilik özel ders mümkün; ücret paylaşılır.' },
+  { q: 'Fiyatı nedir?', a: "Seans ve paket (4/8/12) seçenekleri var. WhatsApp'tan yaz, güncel fiyatı hemen iletelim." },
+];
+---
+
+<ServicePage
+  slug="ozel-kickboks-dersi"
+  seoTitle="Özel Kickboks Dersi İzmir – Birebir Antrenman"
+  description="İzmir Bornova'da birebir özel kickboks dersi. Sana özel program, esnek saat, 2. kademe antrenörle hızlı ilerleme. Sıfırdan başlayanlar ve müsabaka hazırlığı için."
+  eyebrow="Birebir"
+  title="Özel kickboks"
+  titleAccent="dersi"
+  lead="60 dakika boyunca sadece sen ve antrenör. Hedefin ne olursa olsun — ilk yumruk ya da ilk maç — en kısa yol burası."
+  img="/img/birebir-1.webp"
+  imgAlt="Antrenör Taner Yılmaz birebir pad çalışmasında"
+  serviceName="Özel Kickboks Dersi"
+  audience="Yetişkinler ve gençler"
+  forWho={['Kalabalıkta değil, tek başına öğrenmek isteyenler', 'Çalışma saati düzensiz olanlar', 'Müsabakaya hazırlanan sporcular', 'Belirli bir tekniği hızla düzeltmek isteyenler']}
+  features={[
+    { title: 'Sana özel plan', text: 'İlk seansta hedef ve seviye analizi; sonra haftalık program.' },
+    { title: 'Esnek saat', text: "Sabah 08:00'den gece 22:00'ye, hafta sonu dahil." },
+    { title: 'Hızlı düzeltme', text: 'Her hareket anında düzeltilir; alışkanlık yerleşmeden.' },
+    { title: 'Pad & sparring', text: 'Antrenörle pad, istersen kontrollü sparring.' },
+    { title: 'Kondisyon', text: 'Kickboks + functional training tek seansta.' },
+    { title: 'Gizlilik', text: 'Salon sadece sana açık saatler mümkün.' },
+  ]}
+  steps={[
+    { title: 'Hedefini yaz', text: "Form, savunma, müsabaka ya da sadece stres. WhatsApp'tan söyle, ilk seansı planlayalım." },
+    { title: 'Analiz seansı', text: 'İlk 60 dakikada seviyeni, esnekliğini ve hedefini ölçeriz. Program burada çıkar.' },
+    { title: 'Haftalık program', text: 'Haftada 1-3 seans. Her seans bir önceki üstüne kurulur.' },
+    { title: 'Ölçülebilir sonuç', text: '4. haftada teknik, 8. haftada kondisyon, 12. haftada ring.' },
+  ]}
+  faq={faq}
+  whatsappText="Merhaba, özel kickboks dersi hakkında bilgi almak istiyorum."
+  showSchedule={false}
+>
+  <h2>Neden özel ders?</h2>
+  <p>
+    Grup dersinde antrenörün dikkati 12 kişiye bölünür; özel derste <strong>60 dakikanın tamamı senin</strong>. Yanlış duruş,
+    düşük gard, yavaş ayak — hepsi ilk seansta görülür ve düzeltilir. Sıfırdan başlayan biri özel dersle 4 haftada, grupla
+    3 ayda aynı noktaya gelir.
+  </p>
+  <p>
+    Dersleri <a href="/antrenor/">Taner Yılmaz</a> veriyor: 2. kademe karate ve kickboks antrenörü, lisanslı sporcu
+    yetiştiren ve müsabaka köşesinde duran bir hoca. Salonumuz <a href="/salonumuz/">250 m² ve ringli</a>; özel ders
+    saatlerinde alan tamamen sana ait.
+  </p>
+  <h2>Kimler tercih ediyor?</h2>
+  <ul>
+    <li>Vardiyalı ya da düzensiz çalışanlar</li>
+    <li>Müsabaka öncesi son 6-8 hafta yoğunlaşan lisanslı sporcular</li>
+    <li>Kalabalık ortamda rahat edemeyenler, ilk kez spora başlayanlar</li>
+    <li>Çocuğuyla birlikte ders almak isteyen veliler</li>
+  </ul>
+  <p>
+    Özel ders + haftada 2 <a href="/kickboks-dersleri-bornova/">grup dersi</a> kombinasyonu en hızlı ilerleyen üyelerimizin
+    formülü.
+  </p>
+</ServicePage>
