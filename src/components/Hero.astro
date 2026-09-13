@@ -13,19 +13,13 @@ import { SITE, whatsapp } from '../data/site';
     <span class="hero__word"><span>Köklü <em>Ata</em></span></span>
   </h1>
 
-  <!-- Katman 1.5: ışığın figürün arkasından geçen kısmı -->
-  <canvas class="hero__ribbon hero__ribbon--back" data-hero-ribbon-back aria-hidden="true"></canvas>
-
   <!-- Katman 2: antrenör -->
   <div class="hero__figure" data-hero-figure aria-hidden="true">
     <picture>
       <source media="(max-width: 900px)" srcset="/img/taner-hero-m.webp" />
-      <img src="/img/taner-hero.webp" alt="" width="1209" height="1600" fetchpriority="high" decoding="async" />
+      <img src="/img/taner-hero.webp" alt="" width="1633" height="1600" fetchpriority="high" decoding="async" />
     </picture>
   </div>
-
-  <!-- Katman 3: ışık şeridi -->
-  <canvas class="hero__ribbon" data-hero-ribbon aria-hidden="true"></canvas>
 
   <!-- Katman 4: öndeki kontur + metin -->
   <div class="hero__front" data-hero-front>
@@ -143,7 +137,7 @@ import { SITE, whatsapp } from '../data/site';
     height: 100%;
     width: auto;
     max-width: none;
-    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55)) contrast(1.02);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
     opacity: 0;
     transform: translateY(6%) scale(0.98);
     transition: opacity 1.2s var(--ease-out) 0.15s, transform 1.4s var(--ease-out) 0.15s;
@@ -151,22 +145,6 @@ import { SITE, whatsapp } from '../data/site';
   .hero.is-in .hero__figure img {
     opacity: 1;
     transform: none;
-  }
-
-  /* --- katman 3: ışık --- */
-  .hero__ribbon {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-  }
-  .hero__ribbon--back {
-    z-index: 1;
-  }
-  .hero__ribbon {
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    mix-blend-mode: screen;
   }
 
   /* --- katman 4: ön --- */
@@ -356,8 +334,6 @@ import { SITE, whatsapp } from '../data/site';
   const back = hero.querySelector<HTMLElement>('[data-hero-back]')!;
   const figure = hero.querySelector<HTMLElement>('[data-hero-figure]')!;
   const front = hero.querySelector<HTMLElement>('[data-hero-front]')!;
-  const canvas = hero.querySelector<HTMLCanvasElement>('[data-hero-ribbon]')!;
-  const canvasBack = hero.querySelector<HTMLCanvasElement>('[data-hero-ribbon-back]')!;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   requestAnimationFrame(() => hero.classList.add('is-in'));
@@ -368,6 +344,5 @@ import { SITE, whatsapp } from '../data/site';
     gsap.to(back, { yPercent: -35, opacity: 0.2, ease: 'none', scrollTrigger: st });
     gsap.to(figure, { yPercent: 12, ease: 'none', scrollTrigger: st });
     gsap.to(front, { yPercent: -18, opacity: 0, ease: 'none', scrollTrigger: st });
-    import('../scripts/hero-ribbon').then(({ mountRibbon }) => mountRibbon(canvas, canvasBack, hero, figure));
   }
 </script>
