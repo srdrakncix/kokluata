@@ -1,6 +1,6 @@
 # Köklü Ata Kickboks — kokluatakickboks.com
 
-Astro 7 statik site. Three.js hero (masaüstü), GSAP + Lenis scroll, çok sayfalı SEO yapısı.
+Astro 7 statik site. Katmanlı foto hero + canvas ışık şeridi, GSAP + Lenis scroll, çok sayfalı SEO yapısı.
 
 ```
 npm install
@@ -15,4 +15,4 @@ Build command: `npm run build` · Output: `dist` · Node 22+.
 
 ## İçerik
 Tüm metin/veri: `src/data/site.ts` (adres, telefon, program, SSS, yorumlar). Sayfa metinleri `src/pages/*.astro`.
-Görseller `public/img` (webp). 3D eldiven `public/models/glove.glb` (poly.pizza, CC-BY J-Toastie; Loop subdivision + meshopt).
+Görseller `public/img` (webp).

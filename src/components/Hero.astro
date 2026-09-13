@@ -8,28 +8,38 @@ import { SITE, whatsapp } from '../data/site';
     <div class="hero__grid"></div>
   </div>
 
-  <div class="hero__stage" data-hero-stage aria-hidden="true">
-    <canvas class="hero__canvas" data-hero-canvas></canvas>
-    <img class="hero__fallback" data-hero-fallback src="/img/gloves-hero.webp" alt="" width="682" height="665" fetchpriority="high" />
+  <!-- Katman 1: arkadaki dev başlık -->
+  <h1 class="hero__title" data-hero-back aria-label="Köklü Ata Kickboks">
+    <span class="hero__word"><span>Köklü <em>Ata</em></span></span>
+  </h1>
+
+  <!-- Katman 1.5: ışığın figürün arkasından geçen kısmı -->
+  <canvas class="hero__ribbon hero__ribbon--back" data-hero-ribbon-back aria-hidden="true"></canvas>
+
+  <!-- Katman 2: antrenör -->
+  <div class="hero__figure" data-hero-figure aria-hidden="true">
+    <picture>
+      <source media="(max-width: 900px)" srcset="/img/taner-hero-m.webp" />
+      <img src="/img/taner-hero.webp" alt="" width="1209" height="1600" fetchpriority="high" decoding="async" />
+    </picture>
   </div>
 
-  <div class="container hero__in">
-    <h1 class="hero__title" data-hero-title>
-      <span class="hero__word"><span>Köklü</span></span>
-      <span class="hero__word"><span>Ata</span></span>
-      <span class="hero__word hero__word--outline"><span>Kickboks</span></span>
-    </h1>
+  <!-- Katman 3: ışık şeridi -->
+  <canvas class="hero__ribbon" data-hero-ribbon aria-hidden="true"></canvas>
 
-    <div class="hero__side" data-hero-side>
-      <p class="hero__lead">
-        Bornova'nın ringi. <strong>{SITE.founded}</strong>'den beri lisanslı sporcu yetiştiren,
-        250 m² salonda genç ve yetişkin kickboks dersleri.
-      </p>
-      <div class="hero__btns">
-        <a href={whatsapp()} class="btn btn--wa" target="_blank" rel="noopener">
-          Deneme dersine gel
-        </a>
-        <a href="#dersler" class="btn btn--ghost">Dersleri gör</a>
+  <!-- Katman 4: öndeki kontur + metin -->
+  <div class="hero__front" data-hero-front>
+    <p class="hero__kick" aria-hidden="true"><span>Kickboks</span></p>
+    <div class="container hero__bar">
+      <div class="hero__side" data-hero-side>
+        <p class="hero__lead">
+          Bornova'nın ringi. <strong>{SITE.founded}</strong>'den beri lisanslı sporcu yetiştiren,
+          250 m² salonda genç ve yetişkin kickboks dersleri.
+        </p>
+        <div class="hero__btns">
+          <a href={whatsapp()} class="btn btn--wa" target="_blank" rel="noopener">Deneme dersine gel</a>
+          <a href="#dersler" class="btn btn--ghost">Dersleri gör</a>
+        </div>
       </div>
       <a href={SITE.maps} class="hero__rating" target="_blank" rel="noopener">
         <span class="hero__stars" aria-hidden="true">★★★★★</span>
@@ -38,7 +48,7 @@ import { SITE, whatsapp } from '../data/site';
     </div>
   </div>
 
-  <div class="hero__scroll" data-hero-scroll aria-hidden="true">
+  <div class="hero__scroll" aria-hidden="true">
     <span>Kaydır</span>
     <i></i>
   </div>
@@ -47,24 +57,22 @@ import { SITE, whatsapp } from '../data/site';
 <style>
   .hero {
     position: relative;
-    min-height: 100svh;
-    display: grid;
-    align-items: end;
-    padding-block: 140px 56px;
+    height: 100svh;
+    min-height: 640px;
     overflow: clip;
     isolation: isolate;
   }
   .hero__bg {
     position: absolute;
     inset: 0;
-    z-index: -2;
+    z-index: 0;
   }
   .hero__glow {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 55% 60% at 68% 45%, rgba(216, 16, 46, 0.32), transparent 65%),
-      radial-gradient(ellipse 40% 30% at 20% 90%, rgba(216, 16, 46, 0.12), transparent 60%);
+      radial-gradient(ellipse 45% 55% at 50% 60%, rgba(216, 16, 46, 0.28), transparent 65%),
+      radial-gradient(ellipse 40% 30% at 12% 95%, rgba(216, 16, 46, 0.1), transparent 60%);
   }
   .hero__grid {
     position: absolute;
@@ -75,63 +83,34 @@ import { SITE, whatsapp } from '../data/site';
     background-size: 80px 80px;
     mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 20%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 20%, transparent 75%);
-    opacity: 0.6;
+    opacity: 0.55;
   }
 
-  .hero__stage {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-  }
-  .hero__canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1.2s ease;
-  }
-  .hero__canvas.is-ready {
-    opacity: 1;
-  }
-  .hero__fallback {
-    position: absolute;
-    right: -6%;
-    top: 50%;
-    width: min(80vw, 640px);
-    height: auto;
-    transform: translateY(-52%);
-    filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.6));
-    animation: float 6s ease-in-out infinite;
-    display: none;
-  }
-  .hero.is-fallback .hero__fallback {
-    display: block;
-  }
-  .hero.is-fallback .hero__canvas {
-    display: none;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(-52%) rotate(-2deg); }
-    50% { transform: translateY(-46%) rotate(2deg); }
-  }
-
-  .hero__in {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    align-items: end;
-    gap: 48px;
-  }
+  /* --- katman 1: arka başlık --- */
   .hero__title {
-    font-size: clamp(4.2rem, 12.5vw, 12rem);
-    line-height: 0.86;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    max-width: 100vw;
+    text-align: center;
+    font-size: clamp(5rem, 15.5vw, 16rem);
+    line-height: 0.8;
     letter-spacing: -0.005em;
+    color: var(--fg);
+    pointer-events: none;
+    will-change: transform;
+  }
+  .hero__title em {
+    font-style: normal;
+    color: var(--red-2);
   }
   .hero__word {
     display: block;
     overflow: hidden;
-    padding: 0.14em 0.05em 0.04em 0;
+    padding: 0.14em 0.05em 0.04em;
     margin-top: -0.14em;
   }
   .hero__word > span {
@@ -142,33 +121,123 @@ import { SITE, whatsapp } from '../data/site';
   .hero.is-in .hero__word > span {
     transform: none;
   }
-  .hero.is-in .hero__word:nth-child(2) > span { transition-delay: 0.1s; }
-  .hero.is-in .hero__word:nth-child(3) > span { transition-delay: 0.2s; }
-  .hero__word--outline {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--fg);
-  }
 
-  .hero__side {
-    display: grid;
-    gap: 24px;
-    padding-bottom: 0.6rem;
+  /* --- katman 2: figür --- */
+  .hero__figure {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 0;
+    height: 80%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    pointer-events: none;
+    will-change: transform;
   }
-  .hero__side > * {
+  .hero__figure picture {
+    display: block;
+    height: 100%;
+  }
+  .hero__figure img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55)) contrast(1.02);
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s var(--ease-out) 0.5s, transform 1s var(--ease-out) 0.5s;
+    transform: translateY(6%) scale(0.98);
+    transition: opacity 1.2s var(--ease-out) 0.15s, transform 1.4s var(--ease-out) 0.15s;
   }
-  .hero.is-in .hero__side > * {
+  .hero.is-in .hero__figure img {
     opacity: 1;
     transform: none;
   }
-  .hero.is-in .hero__side > :nth-child(2) { transition-delay: 0.62s; }
-  .hero.is-in .hero__side > :nth-child(3) { transition-delay: 0.74s; }
+
+  /* --- katman 3: ışık --- */
+  .hero__ribbon {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+  .hero__ribbon--back {
+    z-index: 1;
+  }
+  .hero__ribbon {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  /* --- katman 4: ön --- */
+  .hero__front {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .hero__front a,
+  .hero__front .btn {
+    pointer-events: auto;
+  }
+  .hero__kick {
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    transform: translateX(-50%);
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 15.5vw, 16rem);
+    line-height: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--fg);
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0.14em 0.05em 0.04em;
+    will-change: transform;
+  }
+  .hero__kick > span {
+    display: block;
+    transform: translateY(110%);
+    transition: transform 1.1s var(--ease-out) 0.25s;
+  }
+  .hero.is-in .hero__kick > span {
+    transform: none;
+  }
+  .hero__bar {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+  }
+  .hero__side {
+    display: grid;
+    gap: 20px;
+    max-width: 380px;
+  }
+  .hero__side > *,
+  .hero__rating {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 1s var(--ease-out) 0.55s, transform 1s var(--ease-out) 0.55s;
+  }
+  .hero.is-in .hero__side > *,
+  .hero.is-in .hero__rating {
+    opacity: 1;
+    transform: none;
+  }
+  .hero.is-in .hero__side > :nth-child(2) {
+    transition-delay: 0.65s;
+  }
   .hero__lead {
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
     color: var(--fg-2);
-    max-width: 42ch;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
   }
   .hero__lead strong {
     color: var(--fg);
@@ -184,6 +253,8 @@ import { SITE, whatsapp } from '../data/site';
     gap: 12px;
     color: var(--fg-2);
     font-size: 0.9rem;
+    padding-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
   }
   .hero__rating strong {
     color: var(--fg);
@@ -196,8 +267,11 @@ import { SITE, whatsapp } from '../data/site';
 
   .hero__scroll {
     position: absolute;
+    z-index: 5;
     left: var(--gutter);
-    bottom: 24px;
+    top: 50%;
+    transform: rotate(-90deg) translateX(-50%);
+    transform-origin: left top;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -222,45 +296,48 @@ import { SITE, whatsapp } from '../data/site';
     animation: scrollLine 2s var(--ease-out) infinite;
   }
   @keyframes scrollLine {
-    to { transform: translateX(100%); }
+    to {
+      transform: translateX(100%);
+    }
   }
 
   @media (max-width: 900px) {
     .hero {
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-      padding: 92px 0 40px;
-      gap: 8px;
-    }
-    .hero__stage {
-      position: relative;
-      inset: auto;
-      z-index: 0;
-      height: 62vw;
-      max-height: 300px;
-      display: grid;
-      place-items: center;
-    }
-    .hero__fallback {
-      position: static;
-      width: min(74vw, 340px);
-      transform: none;
-      animation: floatM 5s ease-in-out infinite;
-    }
-    @keyframes floatM {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
-    }
-    .hero__in {
-      grid-template-columns: 1fr;
-      gap: 24px;
+      min-height: 600px;
     }
     .hero__title {
-      font-size: clamp(3.4rem, 17.5vw, 7rem);
+      top: 19%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(4.2rem, 21vw, 8rem);
+      line-height: 0.82;
+    }
+    .hero__title .hero__word > span {
+      display: grid;
+    }
+    .hero__figure {
+      height: 46%;
+      bottom: 31%;
+    }
+    .hero__kick {
+      bottom: 32%;
+      font-size: clamp(3rem, 18vw, 5.5rem);
+    }
+    .hero__bar {
+      flex-direction: column;
+      align-items: stretch;
+      bottom: 16px;
+      gap: 12px;
+    }
+    .hero__rating {
+      padding-bottom: 0;
+      font-size: 0.8rem;
     }
     .hero__side {
-      gap: 18px;
+      max-width: none;
+      gap: 14px;
+    }
+    .hero__lead {
+      font-size: 0.95rem;
     }
     .hero__btns .btn {
       flex: 1 1 auto;
@@ -273,45 +350,24 @@ import { SITE, whatsapp } from '../data/site';
 </style>
 
 <script>
-  import { gsap, ScrollTrigger } from '../scripts/core';
+  import { gsap } from '../scripts/core';
 
   const hero = document.querySelector<HTMLElement>('[data-hero]')!;
-  const canvas = hero.querySelector<HTMLCanvasElement>('[data-hero-canvas]')!;
-  const title = hero.querySelector<HTMLElement>('[data-hero-title]')!;
-  const side = hero.querySelector<HTMLElement>('[data-hero-side]')!;
-
+  const back = hero.querySelector<HTMLElement>('[data-hero-back]')!;
+  const figure = hero.querySelector<HTMLElement>('[data-hero-figure]')!;
+  const front = hero.querySelector<HTMLElement>('[data-hero-front]')!;
+  const canvas = hero.querySelector<HTMLCanvasElement>('[data-hero-ribbon]')!;
+  const canvasBack = hero.querySelector<HTMLCanvasElement>('[data-hero-ribbon-back]')!;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const small = matchMedia('(max-width: 900px)').matches;
-  const canGL = (() => {
-    try {
-      const c = document.createElement('canvas');
-      return !!(c.getContext('webgl2') || c.getContext('webgl'));
-    } catch {
-      return false;
-    }
-  })();
 
   requestAnimationFrame(() => hero.classList.add('is-in'));
 
-  /* text parallax + fade on scroll (all devices) */
+  /* derinlik: arka başlık hızlı, figür yavaş, ön kontur orta */
   if (!reduced) {
-    gsap.to(title, {
-      yPercent: -18,
-      opacity: 0.15,
-      ease: 'none',
-      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
-    });
-    gsap.to(side, {
-      yPercent: -30,
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: { trigger: hero, start: 'top top', end: '60% top', scrub: true },
-    });
-  }
-
-  if (small || !canGL || reduced) {
-    hero.classList.add('is-fallback');
-  } else {
-    import('../scripts/hero-gloves').then(({ mountGloves }) => mountGloves(canvas, hero)).catch(() => hero.classList.add('is-fallback'));
+    const st = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
+    gsap.to(back, { yPercent: -35, opacity: 0.2, ease: 'none', scrollTrigger: st });
+    gsap.to(figure, { yPercent: 12, ease: 'none', scrollTrigger: st });
+    gsap.to(front, { yPercent: -18, opacity: 0, ease: 'none', scrollTrigger: st });
+    import('../scripts/hero-ribbon').then(({ mountRibbon }) => mountRibbon(canvas, canvasBack, hero, figure));
   }
 </script>
