@@ -115,8 +115,11 @@ import { BENEFITS } from '../data/site';
       min-height: 0;
     }
     .ben__track {
+      width: auto;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      padding-inline: var(--gutter);
+      gap: 12px;
       -webkit-overflow-scrolling: touch;
       padding-bottom: 12px;
       scrollbar-width: none;
@@ -126,8 +129,12 @@ import { BENEFITS } from '../data/site';
     }
     .bcard {
       scroll-snap-align: start;
-      width: 78vw;
-      min-height: 300px;
+      width: 72vw;
+      min-height: 0;
+      padding: 22px;
+    }
+    .ben__end {
+      width: 60vw;
     }
   }
 </style>

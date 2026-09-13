@@ -227,20 +227,44 @@ import { SITE, whatsapp } from '../data/site';
 
   @media (max-width: 900px) {
     .hero {
-      padding-top: 120px;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 92px 0 40px;
+      gap: 8px;
+    }
+    .hero__stage {
+      position: relative;
+      inset: auto;
+      z-index: 0;
+      height: 62vw;
+      max-height: 300px;
+      display: grid;
+      place-items: center;
+    }
+    .hero__fallback {
+      position: static;
+      width: min(74vw, 340px);
+      transform: none;
+      animation: floatM 5s ease-in-out infinite;
+    }
+    @keyframes floatM {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
     }
     .hero__in {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 24px;
     }
     .hero__title {
-      font-size: clamp(3.6rem, 19vw, 8rem);
+      font-size: clamp(3.4rem, 17.5vw, 7rem);
     }
-    .hero__fallback {
-      right: -18%;
-      top: 34%;
-      width: min(92vw, 520px);
-      opacity: 0.9;
+    .hero__side {
+      gap: 18px;
+    }
+    .hero__btns .btn {
+      flex: 1 1 auto;
+      justify-content: center;
     }
     .hero__scroll {
       display: none;

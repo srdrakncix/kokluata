@@ -1,13 +1,15 @@
 @import './fonts.css';
 
 :root {
-  --bg: #0a0a0b;
-  --bg-2: #121214;
-  --bg-3: #1a1a1d;
+  --bg: #18181b;
+  --bg-2: #202024;
+  --bg-3: #2b2b30;
   --fg: #f4f2ef;
-  --fg-2: #b9b5ae;
-  --fg-3: #8f8a82;
-  --line: rgba(244, 242, 239, 0.1);
+  --fg-2: #c2beb7;
+  --fg-3: #928d86;
+  --line: rgba(244, 242, 239, 0.12);
+  --wipe: #ffffff;
+  --wipe-fg: #18181b;
   --red: #d8102e;
   --red-2: #ff2d4d;
   --red-deep: #8c0a1e;
@@ -22,6 +24,21 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-punch: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+/* Açık bölümler: aynı token'lar, ters değerler */
+.theme-light {
+  --bg: #f4f2ee;
+  --bg-2: #ffffff;
+  --bg-3: #e8e5df;
+  --fg: #141416;
+  --fg-2: #4d4a46;
+  --fg-3: #77736d;
+  --line: rgba(20, 20, 22, 0.12);
+  --wipe: #141416;
+  --wipe-fg: #ffffff;
+  background: var(--bg);
+  color: var(--fg);
 }
 
 *,
@@ -176,7 +193,7 @@ p {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--white);
+  background: var(--wipe);
   transform: translateX(-101%) skewX(-12deg);
   transition: transform 0.5s var(--ease-punch);
   z-index: -1;
@@ -187,7 +204,7 @@ p {
 }
 .btn:hover,
 .btn:focus-visible {
-  color: var(--bg);
+  color: var(--wipe-fg);
   transform: translateY(-2px);
 }
 .btn svg {
@@ -200,7 +217,7 @@ p {
   box-shadow: inset 0 0 0 1.5px var(--line);
 }
 .btn--ghost:hover {
-  box-shadow: inset 0 0 0 1.5px var(--white);
+  box-shadow: inset 0 0 0 1.5px var(--fg);
 }
 .btn--wa {
   --btn-bg: #1f9d55;
