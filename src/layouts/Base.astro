@@ -17,6 +17,7 @@ interface Props {
 
 const { title, description, fullTitle, ogImage = '/img/og-default.jpg', schema = [], bodyClass } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const isPreview = import.meta.env.BASE_URL !== '/';
 const pageTitle = fullTitle ?? `${title} | ${SITE.name} · Bornova İzmir`;
 
 const business = {
@@ -67,6 +68,7 @@ const ld = [business, ...schema];
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#0a0a0b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

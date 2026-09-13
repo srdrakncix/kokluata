@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/rebase.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:pages": "node scripts/build-pages.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
